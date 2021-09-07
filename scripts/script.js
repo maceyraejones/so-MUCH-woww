@@ -1,12 +1,18 @@
 $(function() {
     console.log("document is ready!");
 
-    // $('#meme').draggable().droppable();
+
+
 
     var $start_counter = $( "#event-start" ),
     $drag_counter = $( "#event-drag" ),
     $stop_counter = $( "#event-stop" ),
     counts = [ 0, 0, 0 ];
+
+    $("button").click(function(){
+      var x = $("#meme").position();
+      alert("Top: " + x.top + " Left: " + x.left);
+    });
 
   $( "#meme" ).draggable({
     start: function() {
@@ -16,7 +22,7 @@ $(function() {
     drag: function() {
       counts[ 1 ]++;
       updateCounterStatus( $drag_counter, counts[ 1 ] );
-    //   calculateWow($new_count); 
+
     },
     stop: function() {
       counts[ 2 ]++;
@@ -25,12 +31,12 @@ $(function() {
   });
 
   function updateCounterStatus( $event_counter, new_count ) {
-    // first update the status visually...
+
     if ( !$event_counter.hasClass( "ui-state-hover" ) ) {
       $event_counter.addClass( "ui-state-hover" )
         .siblings().removeClass( "ui-state-hover" );
     }
-    // ...then update the numbers
+
     $( "span.count", $event_counter ).text( new_count );
 
     calculateWow(new_count); 
