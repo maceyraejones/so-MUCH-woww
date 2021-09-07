@@ -4,3 +4,10 @@ body {
     color: white;
     font-family:"Courier New", monospace;
 }
+
+#meme {
+
+    height:200; 
+    width:200;
+    border-radius: 35%;
+}
