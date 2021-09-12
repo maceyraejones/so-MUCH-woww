@@ -1,58 +1,27 @@
 $(function() {
     console.log("document is ready!");
 
-
-
-
-    var $start_counter = $( "#event-start" ),
-    $drag_counter = $( "#event-drag" ),
-    $stop_counter = $( "#event-stop" ),
-    counts = [ 0, 0, 0 ];
-
-    $("button").click(function(){
-      var x = $("#meme").position();
-      alert("Top: " + x.top + " Left: " + x.left);
+    $("#meme").draggable({
+        containment: "#containment-wrapper",
+        scroll: false,
+        stop: function() {
+            calculateWow();
+        }
     });
 
-  $( "#meme" ).draggable({
-    start: function() {
-      counts[ 0 ]++;
-      updateCounterStatus( $start_counter, counts[ 0 ] );
-    },
-    drag: function() {
-      counts[ 1 ]++;
-      updateCounterStatus( $drag_counter, counts[ 1 ] );
+    function calculateWow() {
+        var x = $("#meme").position();
+        var wow = x.top + x.left;
 
-    },
-    stop: function() {
-      counts[ 2 ]++;
-      updateCounterStatus( $stop_counter, counts[ 2 ] );
+        if (wow < 500) {
+
+            console.log('not much wow (' + wow + ')');
+            $('#wow-output').html('<h2>not much wow (' + wow + ')</h2>')
+
+        } else {
+            console.log('so much wow (' + wow + ')!!!!');
+            $('#wow-output').text('so much wow (' + wow + ')!!')
+        }
     }
-  });
-
-  function updateCounterStatus( $event_counter, new_count ) {
-
-    if ( !$event_counter.hasClass( "ui-state-hover" ) ) {
-      $event_counter.addClass( "ui-state-hover" )
-        .siblings().removeClass( "ui-state-hover" );
-    }
-
-    $( "span.count", $event_counter ).text( new_count );
-
-    calculateWow(new_count); 
-  }
-
-
-
-function calculateWow (xyz){
-
-    if (xyz < 500){
-        $('#countarea').html('Not much wow (' + xyz +  ')');
-    }
-
-    else{
-        $('#countarea').html('So much wow (' + xyz +  ')');
-    }
-}
 
 });
