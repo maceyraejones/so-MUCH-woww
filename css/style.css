@@ -7,7 +7,7 @@ body {
 
 #meme {
 
-    height:200; 
-    width:200;
+    height: 0vh;
+    width: auto;
     border-radius: 35%;
 }
