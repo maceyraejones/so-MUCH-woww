@@ -1,13 +1,15 @@
 body {
-
     background-color: darkseagreen;
     color: white;
     font-family:"Courier New", monospace;
 }
 
-#meme {
+#containment-wrapper {
+    height: 80vh;
+}
 
-    height: 100;
-    width: 100;
+#meme {
+    height: 50vh;
+    width: auto;
     border-radius: 35%;
 }
